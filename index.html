@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Гүлжайна | Қыз ұзату | Шақыру</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Manrope:wght@300;400;500;600&display=swap"
+      rel="stylesheet">
+    <style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Inter', sans-serif;
+  background:#f8f2f1;
+  color:#5c4c4f;
+  overflow-x:hidden;
+}
+
+section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px 20px;
+  position:relative;
+}
+
+.container{
+  width:100%;
+  max-width:480px;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(16px);
+  border-radius:30px;
+  padding:50px 35px;
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,0.08);
+  position:relative;
+  overflow:hidden;
+}
+
+.container::before{
+  content:'';
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:#f2d7da;
+  top:-100px;
+  right:-100px;
+  opacity:.5;
+}
+
+.container::after{
+  content:'';
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:#edd0d5;
+  bottom:-100px;
+  left:-100px;
+  opacity:.4;
+}
+
+.small{
+  letter-spacing:4px;
+  font-size:12px;
+  color:#b78d94;
+  margin-bottom:18px;
+  z-index:2;
+  position:relative;
+}
+
+h1{
+  font-family:'Cormorant Garamond', serif;
+  font-size:58px;
+  line-height:1;
+  margin-bottom:24px;
+  position:relative;
+  z-index:2;
+}
+
+.text{
+  font-size:16px;
+  line-height:1.9;
+  color:#6f5d60;
+  position:relative;
+  z-index:2;
+}
+
+.info{
+  margin-top:35px;
+  position:relative;
+  z-index:2;
+}
+
+.info p{
+  margin:12px 0;
+  font-size:15px;
+}
+
+.btn{
+  margin-top:35px;
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:40px;
+  background:#cfa4aa;
+  color:white;
+  text-decoration:none;
+  transition:.3s;
+}
+
+.btn:hover{
+  background:#bb8f96;
+}
+
+.timer{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.time-box{
+  background:white;
+  padding:18px;
+  border-radius:20px;
+  min-width:80px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.05);
+}
+
+.time-box h2{
+  font-size:30px;
+  color:#b07d86;
+}
+
+.time-box span{
+  font-size:12px;
+  color:#7b6a6d;
+}
+
+iframe{
+  width:100%;
+  height:300px;
+  border:none;
+  border-radius:20px;
+  margin-top:30px;
+}
+
+footer{
+  margin-top:30px;
+  color:#b18a90;
+  font-size:14px;
+}
+
+.poll{
+  margin-top:25px;
+  text-align:left;
+  background:rgba(255,255,255,0.6);
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.04);
+}
+
+.poll h3{
+  font-size:16px;
+  margin-bottom:12px;
+  color:#5c4c4f;
+}
+
+.poll label{
+  display:block;
+  margin:8px 0;
+  font-size:14px;
+}
+
+.poll input[type="text"],
+.poll input[type="number"]{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  border:1px solid #e0cfd2;
+  outline:none;
+}
+
+.poll button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:#cfa4aa;
+  color:white;
+  cursor:pointer;
+}
+
+.poll button:hover{
+  background:#bb8f96;
+}
+
+@media(max-width:500px){
+
+  h1{
+    font-size:48px;
+  }
+
+  .container{
+    padding:40px 24px;
+  }
+
+}
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: white;
+  padding: 14px 22px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  opacity: 0;
+  transition: 0.4s;
+  font-size: 14px;
+  border: 1px solid #f0d6db;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.poll-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: #5c4c4f;
+}
+
+</style>
+  </head>
+
+  <body>
+    <section id="home">
+      <div class="container">
+        <div class="small">ШАҚЫРУ</div>
+        <h1>Гүлжайна<br>Қыз Ұзату</h1>
+        <div class="text">
+          Құрметті ағайын-туыс, құда-жекжат,<br>
+          нағашы-жиен, бөлелер,<br>
+          бауырлар, әріптестер мен достар!<br><br>
+          Сіздерді аяулы қызымыздың<br>
+          ұзату тойына арналған<br>
+          ақ дастарханымыздың<br>
+          қадірлі қонағы болуға шақырамыз ✨
+        </div>
+        <a href="#details" class="btn">Толығырақ</a>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="container">
+        <div class="small">ТОЙ ТУРАЛЫ</div>
+        <h1>04<br>Шілде</h1>
+        <div class="text">
+          <strong>Той иелері:<br></strong>
+          Қалдыхан мен Гүлмира 💕
+        </div>
+        <div class="info">
+          <p><strong>Уақыты:</strong> 18:00</p>
+          <p><strong>Мекен-жай:</strong>Қызылорда қаласы, Ж Маханбетов ауылы,Әбу
+            Құдабаев көшесі 11үй</p>
+        </div>
+
+        <div class="timer">
+          <div class="time-box"><h2 id="days">0</h2><span>КҮН</span></div>
+          <div class="time-box"><h2 id="hours">0</h2><span>САҒАТ</span></div>
+          <div class="time-box"><h2 id="minutes">0</h2><span>МИНУТ</span></div>
+          <div class="time-box"><h2 id="seconds">0</h2><span>СЕКУНД</span></div>
+        </div>
+
+        <a href="#map" class="btn">Карта</a>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="container">
+        <div class="small">МЕКЕНЖАЙ</div>
+        <h1>Қызылорда</h1>
+        <div class="text">Сіздерді асыға күтеміз 🤍</div>
+
+        <iframe
+          src="https://maps.google.com/maps?q=44.755660,65.478697&t=&z=17&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+
+        <div class="poll">
+          <h3 class="poll-title">Сауалнама</h3>
+          <input type="text" id="name" placeholder="Аты-жөні" />
+          <h3></h3>
+          <h4>Тойға келесіз бе?</h4>
+
+          <label><input type="radio" name="attend" value="Иә"> Иә</label>
+          <label><input type="radio" name="attend" value="Жоқ"> Жоқ</label>
+          <input type="number" id="count" placeholder="Адам саны" min="1" />
+
+          <button onclick="sendForm()">Жіберу</button>
+        </div>
+
+        <footer>
+          Ізгі тілекпен,<br>
+          той иелері ✨
+        </footer>
+      </div>
+    </section>
+
+    <script>
+
+const targetDate = new Date("August 16, 2026 18:00:00").getTime();
+
+setInterval(function(){
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  document.getElementById("days").innerHTML = Math.floor(distance / (1000*60*60*24));
+  document.getElementById("hours").innerHTML = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("minutes").innerHTML = Math.floor((distance%(1000*60*60))/(1000*60));
+  document.getElementById("seconds").innerHTML = Math.floor((distance%(1000*60))/1000);
+
+},1000);
+
+function sendForm(){
+  const attend = document.querySelector('input[name="attend"]:checked')?.value || "";
+  const name = document.getElementById("name").value;
+  const count = document.getElementById("count").value;
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("attend", attend);
+  formData.append("count", count);
+
+  fetch("https://script.google.com/macros/s/AKfycbwhg0qWJ2h_SuYIjOBSVYYk6Ububh_-rVR6VdcWccgpibOEMGTvbG59wm5bJnlz9GIF/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(() => {
+    showToast("✔ Жіберілді! Рахмет 🤍");
+  })
+  .catch(err => {
+    console.log(err);
+    showToast("❌ Қате шықты");
+  });
+}
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+</script>
+    <div id="toast" class="toast"></div>
+  </body>
+</html>
